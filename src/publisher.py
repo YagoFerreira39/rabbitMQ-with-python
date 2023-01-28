@@ -5,12 +5,12 @@ import json
 
 class RabbitMQPublisher:
     def __init__(self) -> None:
-        self.__host = ""
-        self.__port = ""
-        self.__username = ""
-        self.__password = ""
-        self.__exchange = ""
-        self.__routing_key = ""
+        self.__host = "localhost"
+        self.__port = 5672
+        self.__username = "guest"
+        self.__password = "guest"
+        self.__exchange = "data_exchange"
+        self.__routing_key = "RK"
         self.__channel = self.__create_channel()
 
     def __create_channel(self):

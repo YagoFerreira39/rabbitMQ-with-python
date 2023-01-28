@@ -7,11 +7,11 @@ def consumer_callback(channel, method, properties, body):
 
 class RabbitMQConsumer:
     def __init__(self, callback) -> None:
-        self.__host = ""
-        self.__port = ""
-        self.__username = ""
-        self.__password = ""
-        self.__queue = ""
+        self.__host = "localhost"
+        self.__port = 5672
+        self.__username = "guest"
+        self.__password = "guest"
+        self.__queue = "data_queue_3"
         self.__callback = callback
         self.__channel = self.__create_channel()
 
@@ -29,11 +29,14 @@ class RabbitMQConsumer:
 
         channel.queue_declare(
             queue=self.__queue,
-            durable=True
+            durable=True,
+            arguments={
+                "x-over-flow": "reject-publish"
+            }
         )
 
         channel.basic_consume(
-            queue="data_queue",
+            queue=self.__queue,
             auto_ack=True,
             on_message_callback=self.__callback
         )
