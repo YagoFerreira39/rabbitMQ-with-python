@@ -47,3 +47,7 @@ class RabbitMQConsumer:
         print(f'Listen RabbitMQ on Port 5672')
 
         self.__channel.start_consuming()
+
+
+rabbitMQ_consumer = RabbitMQConsumer(consumer_callback)
+rabbitMQ_consumer.start()
