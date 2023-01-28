@@ -36,3 +36,17 @@ class RabbitMQPublisher:
                 delivery_mode=2
             )
         )
+
+
+rabbitmq_publisher = RabbitMQPublisher()
+rabbitmq_publisher.send_message({
+    "success": True,
+    "code": 0,
+    "result": {
+        "data": {
+            "quantity": 676,
+            "ref": "btr-352",
+            "region": "BR"
+        }
+    }
+})
